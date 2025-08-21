@@ -26,9 +26,6 @@ export default function PostForm({
     } else {
       addPost();
     }
-    setTitle("");
-    setBody("");
-    setEditingPost(null);
   };
 
   const editPost = () => {
@@ -37,6 +34,9 @@ export default function PostForm({
         setPosts(
           posts.map((post) => (post.id === editingPost.id ? result.data : post))
         );
+        setTitle("");
+        setBody("");
+        setEditingPost(null);
       })
       .catch((err) => {
         console.log(err);
@@ -47,6 +47,8 @@ export default function PostForm({
     createPosts({ title, body })
       .then((result) => {
         setPosts([result.data, ...posts]);
+        setTitle("");
+        setBody("");
       })
       .catch((err) => {
         console.log(err);
